@@ -1,4 +1,4 @@
-env-vars.sh
+env-vars.sh/
 .env
 *.tfstate
 *.tfvars

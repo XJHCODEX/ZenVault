@@ -9,4 +9,4 @@ export TF_VAR_compartment_ocid=ocid1.tenancy..
 export TF_VAR_subnet_ocid=ocid1.subnet..
 export TF_VAR_ssh_public_key=$(cat (directory))
 export TF_VAR_ssh_private_key=$(cat (directory))
-export TF_VAR_admin_password=Welcome_1234
+export TF_VAR_admin_password=

@@ -9,4 +9,4 @@ export TF_VAR_compartment_ocid=ocid1.tenancy.oc1..aaaaaaaavsbtgnpg7nz6sxvofyt3ce
 export TF_VAR_subnet_ocid=ocid1.subnet.oc1.iad.aaaaaaaafcodgg7o4pzasfu5ruh6tth7ixoifpvwvqbuqcno2wvwbiu5uq3q
 export TF_VAR_ssh_public_key=$(cat /Users/jeremy/.ssh/ssh-test-instance.key.pub)
 export TF_VAR_ssh_private_key=$(cat /Users/jeremy/.ssh/ssh-test-instance.key)
-
+export TF_VAR_admin_password=Welcome_1234
