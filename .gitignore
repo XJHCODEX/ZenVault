@@ -1,0 +1,15 @@
+.env-vars.sh
+.env
+*.tfstate
+*.tfvars
+__pycache__/
+*.pyc
+instance/
+.envrc
+.vscode/
+.DS_Store
+*.log
+*.terraform
+wallet_storagedb.zip
+ansible/files/wallet_storagedb/
+ansible/
