@@ -22,7 +22,7 @@
 - **Cloud Infrastructure:** Oracle Cloud Infrastructure (OCI)
 - **Automation:** Ansible
 - **DevOps:** systemd for service management
-- **Database:** Oracle Autonomous Database
+- **Database:** Oracle Autonomous Database 23ai
 
 ---
 
