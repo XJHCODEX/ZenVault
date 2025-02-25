@@ -13,3 +13,5 @@ instance/
 wallet_storagedb.zip
 ansible/files/wallet_storagedb/
 ansible/
+terraform.tfstate.backup
+.terraform.lock.hcl
