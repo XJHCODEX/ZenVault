@@ -1,7 +1,10 @@
 from flask import Flask, request, jsonify, render_template, Response, send_file
+from dotenv import load_dotenv
 import cx_Oracle
 import io
 import os
+
+load_dotenv()
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -11,9 +14,9 @@ app = Flask(__name__)
 os.environ["TNS_ADMIN"] = "/home/ubuntu/wallet_storagedb"
 
 # Database credentials (Use environment variables for security)
-DB_USER = "test_user"
-DB_PASS = "Welcome_12345"
-DB_DSN = "storagedb_low"
+DB_USER = os.getenv("DB_username")
+DB_PASS = os.getenv("DB_password")
+DB_DSN = os.getenv("DB_DSN")
 
 def get_db_connection():
     """Establish and return a database connection."""
