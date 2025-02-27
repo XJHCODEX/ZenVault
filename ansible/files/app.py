@@ -16,6 +16,9 @@ os.environ["TNS_ADMIN"] = "/home/ubuntu/wallet_storagedb"
 # Database credentials (Use environment variables for security)
 DB_USER = os.getenv("DB_username")
 DB_PASS = os.getenv("DB_password")
+
+# instead of connection string, the DSN within the tnsnames.ora file within your wallet. 
+# example: dbname_low
 DB_DSN = os.getenv("DB_DSN")
 
 def get_db_connection():
