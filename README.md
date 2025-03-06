@@ -60,7 +60,7 @@ nano ~/.bashrc
 # Add the following lines:
 export LD_LIBRARY_PATH=/home/ubuntu/instantclient_23_7:$LD_LIBRARY_PATH
 export PATH=/home/ubuntu/instantclient_23_7:$PATH
-export TNS_ADMIN=/home/ubuntu/instantclient_23_7
+export TNS_ADMIN="/home/ubuntu/<wallet_name>"
 
 source ~/.bashrc
 ```
