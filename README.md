@@ -1,7 +1,7 @@
 # ZenVault - Secure Cloud File Storage System
 
 ![ZenVault Logo](static/favicon.ico)
-
+ 
 ## Overview
 **ZenVault** is a secure and scalable cloud-based file storage system built using **Flask** and **Oracle Cloud Infrastructure (OCI)**. It allows users to securely upload, store, and manage files with seamless access control and role-based permissions. The application supports a wide variety of file types, including documents, images, videos, and audio files.
 
