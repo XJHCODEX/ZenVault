@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZenVault</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+    <!-- Background Video -->
+    <video id="bg-video" width="100%" allowfullscreen="true" muted="muted" autoplay="autoplay" playsinline="playsinline" loop="loop">
+        <source src="https://objectstorage.us-ashburn-1.oraclecloud.com/p/fVuB-OhmQKc95Nsj3ROZk11SZTV76OUKkvHYPmGGa7igh-5Ux7r5kZYwnhGXApTT/n/id9kpubcudu9/b/zenvault-bucket-storage/o/waterfall.mp4" type="video/mp4">
+    </video>  
+    
+    <!-- Navbar Container -->
+    {% block navbar %}
+    <div class="nav-button-container">
+        <button class="nav-btn">☰ Menu</button>
+        <div class="nav-dropdown">
+            <a href="/" class="nav-item">Home</a>
+            <a href="/upload_page" class="nav-item">Upload Files</a>
+            <a href="/file_page" class="nav-item">View Files</a>
+        </div>
+    </div>
+    {% endblock %}
+
+
+    <!-- Main Content -->
+    <div class="container mt-5">
+        <div class="content-box p-4">
+            {% block content %} {% endblock %}
+        </div>
+    </div>
+    <script>
+        document.getElementById("navToggle").addEventListener("click", function() {
+            var menu = document.getElementById("navMenu");
+            menu.classList.toggle("show");
+        });
+    
+        // Close the menu when clicking outside
+        document.addEventListener("click", function(event) {
+            var button = document.getElementById("navToggle");
+            var menu = document.getElementById("navMenu");
+            if (!button.contains(event.target) && !menu.contains(event.target)) {
+                menu.classList.remove("show");
+            }
+        });
+    </script>
+     
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

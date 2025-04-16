@@ -1,0 +1,199 @@
+body {
+    background: #ffffff;
+}
+/* nav bar */
+/* Navigation Button Container */
+    .nav-button-container {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 100;
+    }
+
+    /* Button Styling */
+    .nav-btn {
+        background: rgba(98, 124, 98, 0.24); /* Dark semi-transparent background */
+        color: white;
+        font-size: 1.2rem;
+        font-weight: bold;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Button Hover Effect */
+    .nav-btn:hover {
+        background: rgba(98, 124, 98, 0.24); /* Dark semi-transparent background */
+        color: #000;
+    }
+
+    /* Dropdown Menu */
+    .nav-dropdown {
+        display: none;
+        position: absolute;
+        right: 0;
+        background: rgba(98, 124, 98, 0.24); /* Dark semi-transparent background */
+        border-radius: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        width: 180px;
+        text-align: center;
+        padding: 10px;
+    }
+
+    /* Show Dropdown on Hover */
+    .nav-button-container:hover .nav-dropdown {
+        display: block;
+    }
+
+    /* Dropdown Links */
+    .nav-dropdown .nav-item {
+        display: block;
+        padding: 12px;
+        color: white;
+        font-size: 1.1rem;
+        text-decoration: none;
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* Hover Effect for Links */
+    .nav-dropdown .nav-item:hover {
+        background: rgba(98, 124, 98, 0.24); /* Dark semi-transparent background */
+        color: black;
+        border-radius: 5px;
+    }
+
+    /* Show Menu */
+    .show {
+        display: block;
+    }
+
+/* HOME PAGE */
+/* Enhancing the Welcome Header */
+.home-container h1 {
+    font-size: 3rem; /* Increase font size */
+    font-weight: bold; /* Make text bolder */
+    color: #ffffff; /* Set text color to white */
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7); /* Adds a strong shadow for better readability */
+}
+
+/* Enhancing the Description Text */
+.home-container p {
+    font-size: 1.5rem; /* Increase font size */
+    color: #ffffff; /* White color for better contrast */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Shadow to improve readability */
+}
+.home-container h1 {
+    font-size: 3rem; /* Increase font size */
+    font-weight: bold; /* Make text bolder */
+    color: #ffffff; /* Set text color to white */
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7); /* Adds a strong shadow for better readability */
+}
+
+/* Enhancing the Description Text */
+.home-container h4 {
+    font-size: 1.5rem; /* Increase font size */
+    color: #ffffff; /* White color for better contrast */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Shadow to improve readability */
+}
+
+.home-container h1 {
+    font-size: 3rem; /* Increase font size */
+    font-weight: bold; /* Make text bolder */
+    color: #ffffff; /* Set text color to white */
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7); /* Adds a strong shadow for better readability */
+}
+
+/* Enhancing the Description Text */
+.home-container h5 {
+    font-size: 1.5rem; /* Increase font size */
+    color: #ffffff; /* White color for better contrast */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Shadow to improve readability */
+}
+
+/* Centering and Improving Readability */
+.content-box {
+    background: rgba(98, 124, 98, 0.24); /* Dark semi-transparent background */
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 700px; /* Increase width for better spacing */
+    text-align: center;
+}
+/* END OF HOME PAGE */
+
+.container {
+    max-width: 800px;
+}
+.card {
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background: rgba(98, 124, 98, 0.24); /* Dark semi-transparent background */
+}
+.btn-primary, .btn-success, .btn-danger, .btn-info {
+    border-radius: 20px;
+}
+.list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    background: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+#previewContent img, iframe {
+    max-width: 100%;
+    border-radius: 10px;
+    background: rgba(98, 124, 98, 0.24); /* Dark semi-transparent background */
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+#bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This ensures the video covers the entire screen */
+    z-index: -1; /* Make sure the video stays behind other content */
+}
+
+#fileList {
+    max-height: 30vh; /* Limits height to 30% of the viewport height */
+    overflow-y: auto; /* Enables vertical scrolling if needed */
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #888 #f1f1f1;
+}
+
+/* For Webkit browsers like Chrome & Safari */
+#fileList::-webkit-scrollbar {
+    width: 8px;
+}
+
+#fileList::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+#fileList::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+#fileList::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Ensure the file card does not expand too much */
+.file-card {
+    max-height: 40vh; /* Limits the max height of the card */
+    overflow: hidden;
+}

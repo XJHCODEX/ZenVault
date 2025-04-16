@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="home-container p-5">
+    <h5 class="mb-4">Upload a File</h5>
+    <form id="uploadForm" enctype="multipart/form-data">
+        <div class="mb-3">
+            <input type="file" id="fileInput" name="file" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Upload</button>
+    </form>
+    <div id="uploadMessage" class="mt-3"></div>
+</div>
+
+<script>
+$("#uploadForm").submit(function(event) {
+    event.preventDefault();
+    let formData = new FormData(this);
+
+    // Show progress bar
+    $("#progressContainer").show();
+    $("#progressBar").css("width", "0%");
+
+    $.ajax({
+        url: '/upload',
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        xhr: function () {
+            var xhr = new window.XMLHttpRequest();
+            xhr.upload.addEventListener("progress", function(evt) {
+                if (evt.lengthComputable) {
+                    var percentComplete = (evt.loaded / evt.total) * 100;
+                    $("#progressBar").css("width", percentComplete + "%").text(Math.round(percentComplete) + "%");
+                }
+            }, false);
+            return xhr;
+        },
+        success: function(response) {
+            $("#uploadMessage").html(`<div class='alert alert-success'>${response.message}</div>`);
+        },
+        error: function(xhr) {
+            $("#uploadMessage").html(`<div class='alert alert-danger'>Error: ${xhr.responseJSON.error}</div>`);
+        }
+    });
+});
+</script>
+{% endblock %}
