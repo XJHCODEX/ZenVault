@@ -62,6 +62,10 @@ export ANSIBLE_SSH_PRIVATE_KEY_FILE=<ssh_key_location>
 ```
 
 ```bash
+source .env
+```
+
+```bash
 bash generate_inventory.sh
 ```
 
