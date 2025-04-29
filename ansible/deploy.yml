@@ -23,7 +23,7 @@
 
     - name: Install Flask and cx_Oracle
       pip:
-        name: ["flask", "cx_Oracle"]
+        name: ["flask", "cx_Oracle", "flask-login", "flask-wtf", "werkzeug", "authlib", "flask-jwt-extended"]
 
     # Ensure wallet_storagedb directory exists
     - name: Ensure wallet_storagedb directory exists

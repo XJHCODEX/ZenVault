@@ -1,13 +1,69 @@
 {% extends "layout.html" %}
-
-
 {% block content %}
-<div class="home-container d-flex align-items-center justify-content-center text-center">
-    <div class="p-5">
-        <h1 class="mb-4">Welcome to ZenVault</h1>
-        <p>Manage your files easily and securely.</p>
-        <a href="/upload_page" class="btn btn-primary btn-lg m-2">Upload Files</a>
-        <a href="/file_page" class="btn btn-success btn-lg m-2">View Files</a>
+    <style>
+        /* Index Page Specific Styles */
+        .home-container {
+            height: 65vh; /* Full viewport height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #ffffff; /* White text */
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Shadow for readability */
+        }
+
+        .content-box {
+            background: transparent; /* Remove semi-transparent background */
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 700px;
+        }
+
+        .home-container h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        .home-container p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn-primary, .btn-success {
+            border-radius: 20px;
+            font-weight: bold;
+            padding: 12px 24px;
+            font-size: 1.2rem;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+            border-color: #218838;
+        }
+    </style>
+
+    <div class="home-container d-flex align-items-center justify-content-center text-center">
+        <div class="content-box">
+            <h1 class="mb-4">Welcome to ZenVault</h1>
+            <p>Manage your files easily and securely.</p>
+            <a href="{{ url_for('upload_page') }}" class="btn btn-primary btn-lg m-2">Upload Files</a>
+            <a href="{{ url_for('file_page') }}" class="btn btn-success btn-lg m-2">View Files</a>
+        </div>
     </div>
-</div>
 {% endblock %}

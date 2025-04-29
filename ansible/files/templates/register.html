@@ -1,0 +1,117 @@
+{% extends 'layout.html' %}
+
+{% block navbar %}
+{% endblock %}
+
+{% block content %}
+    <style>
+        /* Register Page Specific Styles */
+        .content-box {
+            background: transparent; /* Remove semi-transparent background */
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 700px;
+            text-align: center;
+            color: #ffffff; /* White text */
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Shadow for readability */
+        }
+
+        .content-box h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-box p {
+            font-size: 1.2rem;
+        }
+
+        .content-box a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .content-box a:hover {
+            text-decoration: underline;
+        }
+
+        .form-control {
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.9); /* Semi-transparent white input */
+            color: #333;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 5px rgba(98, 124, 98, 0.5);
+            border-color: #627c62; /* Matches app's color scheme */
+        }
+
+        .form-label {
+            color: #ffffff;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn-success {
+            border-radius: 20px;
+            font-weight: bold;
+            padding: 10px 20px;
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+            border-color: #218838;
+        }
+
+        .alert-danger {
+            font-size: 0.9rem;
+            border-radius: 10px;
+            background: rgba(220, 53, 69, 0.9);
+            color: #ffffff;
+            text-shadow: none;
+        }
+
+        .text-danger {
+            font-size: 0.85rem;
+            color: #ffcccc; /* Light red for error messages */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+
+    <div class="container mt-5">
+        <div class="content-box mx-auto">
+            <h2 class="mb-4">Register</h2>
+            {% if error %}
+                <div class="alert alert-danger text-center" role="alert">
+                    {{ error }}
+                </div>
+            {% endif %}
+            <form method="POST" action="{{ url_for('register') }}">
+                {{ register_form.hidden_tag() }}
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    {{ register_form.username(class="form-control", id="username", required=True, placeholder="Enter username") }}
+                    {% if register_form.username.errors %}
+                        {% for error in register_form.username.errors %}
+                            <div class="text-danger">{{ error }}</div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    {{ register_form.password(class="form-control", id="password", required=True, placeholder="Enter password") }}
+                    {% if register_form.password.errors %}
+                        {% for error in register_form.password.errors %}
+                            <div class="text-danger">{{ error }}</div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <button type="submit" class="btn btn-success w-100">Register</button>
+            </form>
+            <p class="text-center mt-3">
+                Already have an account? <a href="{{ url_for('login') }}">Login here</a>.
+            </p>
+        </div>
+    </div>
+{% endblock %}

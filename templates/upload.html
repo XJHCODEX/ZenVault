@@ -1,6 +1,29 @@
 {% extends "layout.html" %}
 
 {% block content %}
+<style>
+
+    .content-box {
+        background: transparent; /* Remove semi-transparent background */
+        border-radius: 15px;
+        padding: 30px;
+        max-width: 700px;
+    }
+
+    .form-control {
+        border-radius: 5px;
+        background: rgba(255, 255, 255, 0.9); /* Semi-transparent white input */
+        color: #333;
+        font-size: 1.2rem; /* Larger input to match button size */
+        padding: 12px;
+    }
+
+    .form-control:focus {
+        box-shadow: 0 0 5px rgba(98, 124, 98, 0.5);
+        border-color: #627c62; /* Matches app's color scheme */
+    }
+
+</style>
 <div class="home-container p-5">
     <h5 class="mb-4">Upload a File</h5>
     <form id="uploadForm" enctype="multipart/form-data">

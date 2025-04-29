@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% block navbar %}
+{% endblock %}
+{% block content %}
+    <style>
+        /* Logout Page Specific Styles (Mirroring index.html) */
+        .home-container {
+            height: 65vh; /* Full viewport height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #ffffff; /* White text */
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Shadow for readability */
+        }
+
+        .content-box {
+            background: transparent; /* Remove semi-transparent background */
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 700px;
+        }
+
+        .home-container h4 {
+            font-size: 3rem; /* Match index.html h1 size */
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        .home-container p {
+            font-size: 1.5rem; /* Match index.html p size */
+            margin-bottom: 1.5rem;
+        }
+
+        .spinner-border {
+            width: 3rem; /* Larger to match index.html scale */
+            height: 3rem;
+            border-width: 0.4em;
+        }
+
+        .spinner-border.text-primary {
+            color: #007bff; /* Match btn-primary */
+        }
+    </style>
+
+    <div class="home-container d-flex align-items-center justify-content-center text-center">
+        <div class="content-box">
+            <h4>Logged Out</h4>
+            <p>You have been successfully logged out. Redirecting to login page...</p>
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Redirect to login page after 2 seconds
+        setTimeout(function() {
+            window.location.href = "{{ url_for('login') }}";
+        }, 2000);
+    </script>
+{% endblock %}

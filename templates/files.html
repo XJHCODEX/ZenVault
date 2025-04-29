@@ -1,18 +1,40 @@
 {% extends "layout.html" %}
 
 {% block content %}
+<style>
+    .content-box {
+        background: transparent; 
+        border-radius: 15px;
+        padding: 30px;
+        max-width: 700px;
+    }
+
+    .form-control {
+        border-radius: 5px;
+        background: rgba(255, 255, 255, 0.9); /* Semi-transparent white input */
+        color: #333;
+        font-size: 1.2rem; /* Larger input to match button size */
+        padding: 12px;
+    }
+
+    .form-control:focus {
+        box-shadow: 0 0 5px rgba(98, 124, 98, 0.5);
+        border-color: #627c62; /* Matches app's color scheme */
+    }
+</style>
+
 <div class="home-container p-5">
     <h5 class="mb-4">Available Files</h5>
-    <button class="btn btn-success w-100 mb-3" id="refreshFiles">Refresh List</button>
-    <ul id="fileList" class="list-group p-2"></ul>
+    <button class="btn btn-success w-100 mb-3" id="refreshFiles" aria-label="Refresh file list">Refresh List</button>
+    <ul id="fileList" class="list-group p-2" aria-live="polite"></ul>
 </div>
 
-<div class="modal fade" id="previewModal" tabindex="-1">
+<div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="previewModalLabel">File Preview</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body text-center">
                 <div id="previewContent"></div>
@@ -28,55 +50,60 @@
             fileList.empty();
             if (data.files && data.files.length > 0) {
                 data.files.forEach(function(file) {
-                    let listItem = `<li class='list-group-item d-flex justify-content-between align-items-center'>
-                        <span>${file.file_name}</span>
-                        <div>
-                            <button class='btn btn-sm btn-info view-btn' data-file='${file.file_name}'>View</button>
-                            <a href='/download/${file.file_name}' class='btn btn-sm btn-primary'>Download</a>
-                            <button class='btn btn-sm btn-danger delete-btn' data-file='${file.file_name}'>Delete</button>
-                        </div>
-                    </li>`;
+                    let uploadDate = file.upload_date || "Unknown";
+                    let listItem = `
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span>
+                                ${file.file_name}
+                                <small class="text-muted d-block">Uploaded: ${uploadDate}</small>
+                            </span>
+                            <div>
+                                <button class="btn btn-sm btn-info view-btn" data-file="${file.file_name}" aria-label="View ${file.file_name}">View</button>
+                                <a href="/download/${file.file_name}" class="btn btn-sm btn-primary" aria-label="Download ${file.file_name}">Download</a>
+                                <button class="btn btn-sm btn-danger delete-btn" data-file="${file.file_name}" aria-label="Delete ${file.file_name}">Delete</button>
+                            </div>
+                        </li>`;
                     fileList.append(listItem);
                 });
 
                 $(".view-btn").click(function() {
-                            let fileName = $(this).data("file");
-                            $("#previewModalLabel").text("Preview: " + fileName);
-                            $("#previewContent").html("<p>Loading...</p>");
-                            let fileUrl = `/preview/${fileName}`;
+                    let fileName = $(this).data("file");
+                    $("#previewModalLabel").text("Preview: " + fileName);
+                    $("#previewContent").html("<p>Loading...</p>");
+                    let fileUrl = `/preview/${fileName}`;
 
-                            let fileExt = fileName.split('.').pop().toLowerCase();
+                    let fileExt = fileName.split('.').pop().toLowerCase();
 
-                            if (['jpg', 'jpeg', 'png', 'gif'].includes(fileExt)) {
-                                $("#previewContent").html(`<img src="${fileUrl}" class="img-fluid">`);
-                            } else if (fileExt === 'pdf') {
-                                $("#previewContent").html(`<iframe src="${fileUrl}" width="100%" height="500px"></iframe>`);
-                            } else if (['mp4', 'mov', 'avi', 'mkv'].includes(fileExt)) {
-                                $("#previewContent").html(`
-                                    <video controls width="100%" preload="metadata">
-                                        <source src="${fileUrl}" type="video/${fileExt}">
-                                        Your browser does not support the video tag.
-                                    </video>
-                                `);
-                            } else if (['mp3', 'wav', 'ogg'].includes(fileExt)) {
-                                $("#previewContent").html(`
-                                    <audio controls>
-                                        <source src="${fileUrl}" type="audio/${fileExt}">
-                                        Your browser does not support the audio element.
-                                    </audio>
-                                `);
-                            } else if (fileExt === 'txt') {
-                            $.get(fileUrl, function(text) {
-                                $("#previewContent").html(`<pre class="text-start p-3">${text}</pre>`);
-                            }).fail(function() {
-                                $("#previewContent").html("<p>Error loading text file.</p>");
-                            });
-                            } else {
-                                $("#previewContent").html("<p>Preview not available for this file type.</p>");
-                            }
-
-                            $("#previewModal").modal("show");
+                    if (['jpg', 'jpeg', 'png', 'gif'].includes(fileExt)) {
+                        $("#previewContent").html(`<img src="${fileUrl}" class="img-fluid" alt="Preview of ${fileName}">`);
+                    } else if (fileExt === 'pdf') {
+                        $("#previewContent").html(`<iframe src="${fileUrl}" width="100%" height="500px" title="PDF preview"></iframe>`);
+                    } else if (['mp4', 'mov', 'avi', 'mkv'].includes(fileExt)) {
+                        $("#previewContent").html(`
+                            <video controls width="100%" preload="metadata">
+                                <source src="${fileUrl}" type="video/${fileExt === 'mkv' ? 'webm' : fileExt}">
+                                Your browser does not support the video tag.
+                            </video>
+                        `);
+                    } else if (['mp3', 'wav', 'ogg'].includes(fileExt)) {
+                        $("#previewContent").html(`
+                            <audio controls>
+                                <source src="${fileUrl}" type="audio/${fileExt}">
+                                Your browser does not support the audio element.
+                            </audio>
+                        `);
+                    } else if (fileExt === 'txt') {
+                        $.get(fileUrl, function(text) {
+                            $("#previewContent").html(`<pre class="text-start p-3">${text}</pre>`);
+                        }).fail(function(xhr) {
+                            $("#previewContent").html(`<p>Error loading text file: ${xhr.responseJSON?.error || 'Unknown error'}</p>`);
                         });
+                    } else {
+                        $("#previewContent").html("<p>Preview not available for this file type.</p>");
+                    }
+
+                    $("#previewModal").modal("show");
+                });
 
                 $(".delete-btn").click(function() {
                     let fileName = $(this).data("file");
@@ -89,14 +116,16 @@
                                 loadFiles();
                             },
                             error: function(xhr) {
-                                alert(`Error: ${xhr.responseJSON.error}`);
+                                alert(`Error: ${xhr.responseJSON?.error || 'Failed to delete file'}`);
                             }
                         });
                     }
                 });
             } else {
-                fileList.append("<li class='list-group-item text-center'>No files available.</li>");
+                fileList.append('<li class="list-group-item text-center">No files available.</li>');
             }
+        }).fail(function(xhr) {
+            $("#fileList").html(`<li class="list-group-item text-center text-danger">Error loading files: ${xhr.responseJSON?.error || 'Unknown error'}</li>`);
         });
     }
 

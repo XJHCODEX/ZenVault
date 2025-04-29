@@ -162,14 +162,15 @@ body, html {
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* This ensures the video covers the entire screen */
-    z-index: -1; /* Make sure the video stays behind other content */
+    object-fit: cover;
+    z-index: -1;
+    pointer-events: none; 
 }
 
 #fileList {
-    max-height: 30vh; /* Limits height to 30% of the viewport height */
-    overflow-y: auto; /* Enables vertical scrolling if needed */
-    scrollbar-width: thin; /* Firefox */
+    max-height: 30vh; 
+    overflow-y: auto; 
+    scrollbar-width: thin; 
     scrollbar-color: #888 #f1f1f1;
 }
 
@@ -196,4 +197,43 @@ body, html {
 .file-card {
     max-height: 40vh; /* Limits the max height of the card */
     overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .nav-button-container {
+        top: 10px;
+        right: 10px;
+        z-index: 1000; /* Ensure it stays above other elements */
+    }
+
+    .nav-dropdown {
+        background: rgba(98, 124, 98, 0.80); /* Dark semi-transparent background */
+        top: 40px;
+        min-width: 180px;
+        max-width: 90vw; /* Prevent overflow */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Shadow for depth */
+        border: 1px solid rgba(200, 200, 200, 0.8); /* Semi-transparent border */
+        z-index: 999; /* Ensure dropdown is above content */
+        transition: opacity 0.2s ease, transform 0.2s ease; /* Smooth transitions */
+    }
+
+    .nav-item {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+        color: #333; /* High-contrast text for readability */
+        border-bottom: 1px solid rgba(200, 200, 200, 0.5); /* Transparent separator */
+    }
+
+    .nav-item:last-child {
+        border-bottom: none; /* Remove border from last item */
+    }
+
+    .nav-item:hover, .nav-item:focus {
+        color: #000;
+    }
+
+    /* Push content down to avoid overlap */
+    .container.mt-5 {
+        margin-top: 60px !important;
+    }
 }

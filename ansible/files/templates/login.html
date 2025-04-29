@@ -1,0 +1,115 @@
+{% extends 'layout.html' %}
+{% block navbar %}
+{% endblock %}
+{% block content %}
+    <style>
+        /* Login Page Specific Styles */
+        .content-box {
+            background: transparent; /* Remove semi-transparent background */
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 700px;
+            text-align: center;
+            color: #ffffff; /* White text */
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Shadow for readability */
+        }
+
+        .content-box h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-box p {
+            font-size: 1.2rem;
+        }
+
+        .content-box a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .content-box a:hover {
+            text-decoration: underline;
+        }
+
+        .form-control {
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.9); /* Semi-transparent white input */
+            color: #333;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 5px rgba(98, 124, 98, 0.5);
+            border-color: #627c62; /* Matches app's color scheme */
+        }
+
+        .form-label {
+            color: #ffffff;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn-primary {
+            border-radius: 20px;
+            font-weight: bold;
+            padding: 10px 20px;
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .alert-danger {
+            font-size: 0.9rem;
+            border-radius: 10px;
+            background: rgba(220, 53, 69, 0.9);
+            color: #ffffff;
+            text-shadow: none;
+        }
+
+        .text-danger {
+            font-size: 0.85rem;
+            color: #ffcccc; /* Light red for error messages */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+
+    <div class="container mt-5">
+        <div class="content-box mx-auto">
+            <h2 class="mb-4">Login</h2>
+            {% if error %}
+                <div class="alert alert-danger text-center" role="alert">
+                    {{ error }}
+                </div>
+            {% endif %}
+            <form method="POST" action="{{ url_for('login') }}">
+                {{ login_form.hidden_tag() }}
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    {{ login_form.username(class="form-control", id="username", required=True, placeholder="Enter username") }}
+                    {% if login_form.username.errors %}
+                        {% for error in login_form.username.errors %}
+                            <div class="text-danger">{{ error }}</div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    {{ login_form.password(class="form-control", id="password", required=True, placeholder="Enter password") }}
+                    {% if login_form.password.errors %}
+                        {% for error in login_form.password.errors %}
+                            <div class="text-danger">{{ error }}</div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Login</button>
+            </form>
+            <p class="text-center mt-3">
+                Don't have an account? <a href="{{ url_for('register') }}">Register here</a>.
+            </p>
+        </div>
+    </div>
+{% endblock %}

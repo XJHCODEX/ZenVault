@@ -1,3 +1,7 @@
 Flask==2.3.3
 cx_Oracle==8.3.0
 python-dotenv==1.0.0
+flask-login 
+flask-jwt-extended 
+authlib    
+flask-wtf
