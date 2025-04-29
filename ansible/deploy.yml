@@ -82,6 +82,14 @@
         owner: ubuntu
         group: ubuntu
         mode: '0755'
+    
+    - name: Deploy forms.py
+      copy:
+        src: files/forms.py
+        dest: /home/ubuntu/forms.py
+        owner: ubuntu
+        group: ubuntu
+        mode: '0755'
 
     - name: Ensure templates directory exists
       file:
@@ -114,6 +122,21 @@
       copy:
         src: files/templates/upload.html
         dest: /home/ubuntu/templates/upload.html
+
+    - name: Copy login html
+      copy:
+        src: files/templates/login.html
+        dest: /home/ubuntu/templates/login.html
+    
+    - name: Copy register html
+      copy:
+        src: files/templates/register.html
+        dest: /home/ubuntu/templates/register.html
+
+    - name: Copy logout html
+      copy:
+        src: files/templates/logout.html
+        dest: /home/ubuntu/templates/logout.html
 
     - name: Deploy favicon to static
       copy:
