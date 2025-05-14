@@ -6,7 +6,7 @@
       apt_repository:
         repo: 'deb http://archive.ubuntu.com/ubuntu/ focal universe'
         state: present
-
+        
     - name: Update apt package list
       apt:
         update_cache: yes
